@@ -1,4 +1,4 @@
-import java.io.{File, FileNotFoundException, PrintWriter}
+import java.io.{File, FileNotFoundException, FileWriter, PrintWriter}
 
 import scala.io.Source
 
@@ -25,12 +25,13 @@ def readFromFiles(listFiles : List[File]): List[File] = {
 
   listFiles match {
     case Nil => listFiles
+
     case head :: Nil =>
       val fSource = Source.fromFile(head)
       val fname = head.getName
       val newPath = new File("/home/knoldus/Documents/Assignment-ETL Vidhisha/etl/Duplicates/"+fname)
       println(newPath)
-      val fw = new PrintWriter(new File(fname))
+      val fw = new FileWriter(newPath)
       for (lines <- fSource.getLines)
       {
         //println(lines)
@@ -44,7 +45,7 @@ def readFromFiles(listFiles : List[File]): List[File] = {
         val fSource = Source.fromFile(head)
         val fname = head.getName
         val newPath = new File("/home/knoldus/Documents/Assignment-ETL Vidhisha/etl/Duplicates/"+fname)
-        val fw = new PrintWriter(new File(fname))
+        val fw = new FileWriter(newPath)
         for (lines <- fSource.getLines)
         {
           //println(lines)
