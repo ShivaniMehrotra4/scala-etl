@@ -4,27 +4,15 @@ import java.io.{File, PrintWriter}
 
 import scala.io.Source
 
-object Etl extends App{
+object Etl extends App {
 
+  //PART-1
+  val directoryPath = "/home/knoldus/Documents/Assignment-ETL Vidhisha/etl/"
+  val listOfFile: List[File] = FilesOfDirectories.readingDirectory(directoryPath)
 
+  val listOfFilesInDirectories = DirectoryItemsList.directoryItems(listOfFile, List.empty[String])
+  val resultingFiles: List[File] = ChoiceOfAction.readFromFiles(listOfFile)
 
-  val file_Object = new File("abc.txt" )
-  val file_write = new PrintWriter("def.txt")
-  val fSource = Source.fromFile(file_Object)
-  /*while (fSource.hasNext)
-  {
-    print(fSource.next)
-  }
-*/
-
-  for(lines <- fSource.getLines)
-    {
-      file_write.write(lines.toUpperCase)
-
-    }
-
-  // closing file
-  fSource.close()
-  file_write.close()
-
+  //Part-2
+  val wordCount: Map[String, Int] = WordCount.count("/home/knoldus/Documents/Assignment-ETL Vidhisha/etl/WordCounts/k.txt", "/home/knoldus/Documents/Assignment-ETL Vidhisha/etl")
 }
